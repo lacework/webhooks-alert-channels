@@ -38,6 +38,7 @@ resource "azurerm_function_app" "func_function_app" {
   location            = var.LOCATION
   resource_group_name = var.RESOURCE_GROUP
   app_service_plan_id = azurerm_app_service_plan.func_app_service_plan.id
+  https_only          = true
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME = "python",
     AzureWebJobsStorage = var.STORAGE_CONNECTION_STRING,
