@@ -27,3 +27,9 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+# Ignore local Azure Function variables and virtualenv
+azure_loganalytics_sentinel/azure_function/local.settings.json
+.venv
+__pycache__/
+.DS_Store
