@@ -41,3 +41,19 @@ Now execute the Function App Code Review
 ```
 cd ../azure_function && func azure functionapp publish function-app-functacclc7f
 ```
+
+Copy the webhook URL
+```
+Functions in function-app-functacclc7f:
+    lacework-to-loganalytics - [httpTrigger]
+        Invoke url: https://function-app-functacclc7f.azurewebsites.net/api/lacework-to-loganalytics
+````
+
+## Lacework Webhook configuration
+You'll have to create a webhook using the previous URL, and also an Alert Rule to leverage the webhook to get events
+
+## Log Analytics queries
+If the table name is LaceworkEvents, log analytics will show it as a custom log field, so the queries must be done against the LaceworkEvents_CL
+```
+LaceworkEvents_CL
+```
