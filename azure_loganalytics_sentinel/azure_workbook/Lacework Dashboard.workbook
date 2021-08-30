@@ -1,0 +1,56 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "## Lacework workbook\n---\n\nIn the table below you'll see the number of events generated at Lacework, by priority, over the last 7 days by default. You can change the Time Range on the dropdown"
+      },
+      "name": "text - 2"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let Severity_t = datatable (event_severity_s:string, Severity:string) [\"1\",\"Critical\", \"2\",  \"High\",\"3\", \"Medium\", \"4\", \"Low\", \"5\", \"Info\"];\nLaceworkEvents_CL\n| summarize Count=count() by event_severity_s, event_type_s\n| join  kind=inner Severity_t on event_severity_s \n| project Severity, Count\n| render piechart",
+        "size": 0,
+        "timeContext": {
+          "durationMs": 604800000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "query - 2"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let Severity_t = datatable (event_severity_s:string, Severity:string) [\"1\",\"Critical\", \"2\",  \"High\",\"3\", \"Medium\", \"4\", \"Low\", \"5\", \"Info\"];\nLaceworkEvents_CL\n| summarize Count=count() by event_severity_s, event_type_s\n| join  kind=inner Severity_t on event_severity_s \n| project event_type_s, Count\n| render piechart",
+        "size": 0,
+        "timeContext": {
+          "durationMs": 604800000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "query - 2 - Copy"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let Severity_t = datatable (event_severity_s:string, Severity:string) [\"1\",\"Critical\", \"2\",  \"High\",\"3\", \"Medium\", \"4\", \"Low\", \"5\", \"Info\"];\nLaceworkEvents_CL\n| join  kind=inner Severity_t on event_severity_s \n| extend  DayHour=bin(TimeGenerated, 1h)\n| summarize count() by DayHour, Severity, event_type_s, event_id_s\n| render columnchart  ",
+        "size": 0,
+        "timeContext": {
+          "durationMs": 604800000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "query - 2"
+    }
+  ],
+  ,
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
