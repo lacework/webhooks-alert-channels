@@ -39,7 +39,7 @@ function-app-name = "function-app-functacclc7f"
 
 Now execute the Function App Code Review
 ```
-cd ../azure_function && func azure functionapp publish function-app-functacclc7f
+cd ../azure_function && func azure functionapp publish function-app-functacclc7f --python
 ```
 
 Copy the webhook URL
